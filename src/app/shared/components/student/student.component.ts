@@ -51,6 +51,7 @@ onaddstudent(){
   }
 
   onUpdatestudent(): void {
+    if(this.fname.nativeElement.value.length===0) return
     let update_std: Istudents = {
       fname: this.fname.nativeElement.value,
       lname: this.lname.nativeElement.value,
@@ -66,6 +67,16 @@ onaddstudent(){
     this.email.nativeElement.value = ''
     this.contact.nativeElement.value = ''
     this.snackBar.open(`STUDENT ARE UPDATED SUCCESSFULLY`, 'close', {
+      horizontalPosition: 'left',
+      verticalPosition: 'top',
+      duration: 3000
+    })
+  }
+  onremove(id:string){
+
+    let getIndex=this.studentArr.findIndex(a=>a.id===id)
+    this.studentArr.splice(getIndex,1)
+     this.snackBar.open(`STUDENT IS DELETED SUCCESSFULLY`, 'Close', {
       horizontalPosition: 'left',
       verticalPosition: 'top',
       duration: 3000
