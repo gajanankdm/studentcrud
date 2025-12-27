@@ -1,16 +1,16 @@
 <div class="container mt-4
 git init
 ">
-    <div class="row">
+    <div class="row bg-dark  p-5">
         <div class="col-md-4">
-            <h3 class="mb-3">Add Student</h3>
+            <h3 class="mb-3 text-center text-danger font-weight-bolder">Add Student</h3>
 
-            <div class="form-group mb-2">
+            <div class="form-group text-danger mb-2">
                 <label>First Name</label>
                 <input #fname type="text" class="form-control">
             </div>
 
-            <div class="form-group mb-2">
+            <div class="form-group mb-2 text-danger">
                 <label>Last Name</label>
                 <input #lname type="text" class="form-control">
                 <label>Email</label>
@@ -19,38 +19,46 @@ git init
                 <label>Contact</label>
                 <input #contact type="number" class="form-control">
             </div>
-            <button *ngIf="!isInEditMode" (click)="onaddstudent()" mat-raised-button color="primary" class="btn-block">Add Student</button>
-            <button *ngIf="isInEditMode" (click)="onUpdatestudent()" mat-raised-button color="accent" class="btn-block">Update Student</button>
+            <button *ngIf="!isInEditMode" (click)="onaddstudent()" mat-raised-button color="primary"
+                class="btn-block">Add Student</button>
+            <button *ngIf="isInEditMode" (click)="onUpdatestudent()" mat-raised-button color="accent"
+                class="btn-block">Update Student</button>
         </div>
 
-        <div class="col-md-8">
-            <h3 class="mb-3 text-center">student informations</h3>
-            <table class="table table-bordered table-hover text-center">
-                <thead class="table-dark">
+        <div class="col-md-8 ">
+            <h3 class="mb-3 text-center font-weight-bold text-danger mt-auto">Student Informations</h3>
+            <table class="table table-bordered table-hover text-center border border-dark">
+                <thead class="bg-info text-center font-weight-bolder">
                     <tr>
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Contact</th>
-                        <th>edit</th>
-                        <th>remove</th>
+                        <th>Edit</th>
+                        <th>Remove</th>
                     </tr>
                 </thead>
 
-                <tbody>
-                    <tr *ngFor="let st of studentArr ,let  i = index">
-                        <td>{{ i+1 }}</td>
+                <tbody class="bg-light">
+                    <tr  *ngFor="let st of studentArr ,let  i = index ">
+                        <td >{{ i+1 }}</td>
                         <td>{{ st.fname }}</td>
                         <td>{{ st.lname }}</td>
                         <td>{{ st.email }}</td>
                         <td>{{ st.contact }}</td>
-                        <td> <button (click)="onEdit(st)" mat-mini-fab color="primary">
+                        <td>
+                            <button class="action-btn edit-btn" (click)="onEdit(st)" mat-mini-fab color="primary">
                                 <mat-icon>edit</mat-icon>
-                            </button></td>
-                        <td> <button (click)="onremove(st.id)" mat-mini-fab color="accent">
+                            </button>
+                        </td>
+
+                        <td>
+                            <button class="action-btn delete-btn" (click)="onremove(st.id)" mat-mini-fab color="accent">
                                 <mat-icon>delete</mat-icon>
-                            </button></td>
+                            </button>
+                        </td>
+
                     </tr>
                 </tbody>
             </table>
