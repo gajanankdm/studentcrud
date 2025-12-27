@@ -27,7 +27,7 @@ git init
 
         <div class="col-md-8 ">
             <h3 class="mb-3 text-center font-weight-bold text-danger mt-auto">Student Informations</h3>
-            <table class="table table-bordered table-hover text-center border border-dark">
+            <table *ngIf="studentArr.length>0;else noStudent" class="table table-bordered table-hover text-center border border-dark">
                 <thead class="bg-info text-center font-weight-bolder">
                     <tr>
                         <th>ID</th>
@@ -41,7 +41,7 @@ git init
                 </thead>
 
                 <tbody class="bg-light">
-                    <tr  *ngFor="let st of studentArr ,let  i = index ">
+                    <tr  *ngFor="let st of studentArr ,let  i = index , trackBy:trackById ">
                         <td >{{ i+1 }}</td>
                         <td>{{ st.fname }}</td>
                         <td>{{ st.lname }}</td>
@@ -62,6 +62,11 @@ git init
                     </tr>
                 </tbody>
             </table>
+            <ng-template #noStudent>
+                <p class="alert alert-warning text-center">
+                    NO STUDENT FOUND
+                </p>
+            </ng-template>
         </div>
 
     </div>

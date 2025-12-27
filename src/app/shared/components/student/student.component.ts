@@ -41,6 +41,10 @@ onaddstudent(){
 
 }
 
+trackById(_index:number,st:Istudents){
+  return st.id
+}
+
   onEdit(st: Istudents): void {
     this.fname.nativeElement.value = st.fname;
     this.lname.nativeElement.value = st.lname;
