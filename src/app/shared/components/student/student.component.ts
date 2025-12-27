@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild} from '@angular/core';
 import { Istudents } from '../../models/student';
 import { students } from '../../const/student';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-student',
@@ -9,10 +10,12 @@ import { students } from '../../const/student';
 })
 export class StudentComponent {
 
-  constructor() { }
+  constructor(private snackBar:MatSnackBar) { }
 
 studentArr:Array<Istudents>=students
 
+isInEditMode:boolean=false;
+editId!:string;
 @ViewChild('fname')fname!:ElementRef
 @ViewChild('lname')lname!:ElementRef
 @ViewChild('email')email!:ElementRef
@@ -38,6 +41,35 @@ onaddstudent(){
 
 }
 
+  onEdit(st: Istudents): void {
+    this.fname.nativeElement.value = st.fname;
+    this.lname.nativeElement.value = st.lname;
+    this.email.nativeElement.value = st.email;
+    this.contact.nativeElement.value = st.contact;
+    this.editId = st.id;
+    this.isInEditMode = true
+  }
 
+  onUpdatestudent(): void {
+    let update_std: Istudents = {
+      fname: this.fname.nativeElement.value,
+      lname: this.lname.nativeElement.value,
+      email: this.email.nativeElement.value,
+      contact: this.contact.nativeElement.value,
+      id: this.editId
+    }
+    let getIndex = this.studentArr.findIndex(s => s.id === update_std.id);
+    this.studentArr[getIndex] = update_std;
+    this.isInEditMode = false;
+    this.fname.nativeElement.value = ''
+    this.lname.nativeElement.value = ''
+    this.email.nativeElement.value = ''
+    this.contact.nativeElement.value = ''
+    this.snackBar.open(`STUDENT ARE UPDATED SUCCESSFULLY`, 'close', {
+      horizontalPosition: 'left',
+      verticalPosition: 'top',
+      duration: 3000
+    })
+  }
 
 }

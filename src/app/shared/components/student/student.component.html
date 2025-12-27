@@ -19,7 +19,8 @@ git init
                 <label>Contact</label>
                 <input #contact type="number" class="form-control">
             </div>
-            <button (click)="onaddstudent()" mat-raised-button color="primary" class="btn-block">Add Student</button>
+            <button *ngIf="!isInEditMode" (click)="onaddstudent()" mat-raised-button color="primary" class="btn-block">Add Student</button>
+            <button *ngIf="isInEditMode" (click)="onUpdatestudent()" mat-raised-button color="accent" class="btn-block">Update Student</button>
         </div>
 
         <div class="col-md-8">
@@ -44,10 +45,10 @@ git init
                         <td>{{ st.lname }}</td>
                         <td>{{ st.email }}</td>
                         <td>{{ st.contact }}</td>
-                        <td> <button mat-mini-fab color="primary">
+                        <td> <button (click)="onEdit(st)" mat-mini-fab color="primary">
                                 <mat-icon>edit</mat-icon>
                             </button></td>
-                               <td> <button mat-mini-fab color="accent">
+                        <td> <button mat-mini-fab color="accent">
                                 <mat-icon>delete</mat-icon>
                             </button></td>
                     </tr>
