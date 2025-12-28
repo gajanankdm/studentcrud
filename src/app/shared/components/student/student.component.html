@@ -54,7 +54,7 @@ git init
                         </td>
 
                         <td>
-                            <button [disabled]="isInEditMode" class="action-btn delete-btn" (click)="onremove(st.id)" mat-mini-fab color="accent">
+                            <button [disabled]="isInEditMode&&st.id===editId" class="action-btn delete-btn" (click)="onremove(st.id)" mat-mini-fab color="accent">
                                 <mat-icon>delete</mat-icon>
                             </button>
                         </td>
